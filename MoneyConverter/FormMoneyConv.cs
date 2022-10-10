@@ -16,5 +16,19 @@ namespace MoneyConverter
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Converter converter = new Converter
+            {
+                FirstCurrency = Converter.getCurrency(comboBox1.Text),
+                SecondCurrency = Converter.getCurrency(comboBox2.Text),
+                Amount = Convert.ToDouble(textBox1.Text)
+            };
+
+            converter.ConvertedAmount = (converter.Amount * converter.FirstCurrency.Tecaj) / converter.SecondCurrency.Tecaj;
+
+            textBox2.Text = converter.ConvertedAmount.ToString();
+        }
     }
 }

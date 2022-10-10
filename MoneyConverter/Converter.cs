@@ -8,8 +8,8 @@ namespace MoneyConverter
 {
     public class Converter
     {
-        public double FirstCurrency { get; set; }
-        public double SecondCurrency { get; set; }
+        public Currency FirstCurrency { get; set; }
+        public Currency SecondCurrency { get; set; }
         public double Amount { get; set; }
         public double ConvertedAmount { get; set; }
 
@@ -41,5 +41,17 @@ namespace MoneyConverter
                 Tecaj = 4.9
             }
         };
+
+        public static Currency getCurrency(string valuta)
+        {
+            foreach (Currency currency in currencies)
+            {
+                if (currency.Valuta == valuta)
+                {
+                    return currency;
+                }
+            }
+            return null;
+        }
     }
 }
