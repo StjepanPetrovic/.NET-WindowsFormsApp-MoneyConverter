@@ -25,28 +25,36 @@ namespace MoneyConverter
                 SecondCurrency = Converter.getCurrency(comboBox2.Text)
             };
 
-            double input = converter.Amount;
-
-            if (Double.TryParse(textBox1.Text, out input))
+            if (converter.FirstCurrency == null || converter.SecondCurrency == null)
             {
-                if (Double.Parse(textBox1.Text) < 0)
-                {
-                    MessageBox.Show("Please, input positive value.");
-                    textBox2.Text = "";
-                }
-                else
-                {
-                    converter.Amount = Convert.ToDouble(textBox1.Text);
-
-                    converter.ConvertedAmount = (converter.Amount * converter.FirstCurrency.Tecaj) / converter.SecondCurrency.Tecaj;
-                    textBox2.Text = converter.ConvertedAmount.ToString();
-                }
+                MessageBox.Show("Please, choose currencies.");
+                textBox2.Text = "";
             }
             else
             {
-                MessageBox.Show("Please, input positive value without letters.");
-                textBox1.Text = "";
-                textBox2.Text = "";
+                double input = converter.Amount;
+
+                if (Double.TryParse(textBox1.Text, out input))
+                {
+                    if (Double.Parse(textBox1.Text) < 0)
+                    {
+                        MessageBox.Show("Please, input positive value.");
+                        textBox2.Text = "";
+                    }
+                    else
+                    {
+                        converter.Amount = Convert.ToDouble(textBox1.Text);
+
+                        converter.ConvertedAmount = (converter.Amount * converter.FirstCurrency.Tecaj) / converter.SecondCurrency.Tecaj;
+                        textBox2.Text = converter.ConvertedAmount.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please, input positive value without letters.");
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                }
             }
         }
     }
